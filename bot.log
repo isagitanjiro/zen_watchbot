@@ -1,0 +1,869 @@
+nohup: ignoring input
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getMe "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/deleteWebhook "HTTP/1.1 200 OK"
+INFO:apscheduler.scheduler:Scheduler started
+INFO:telegram.ext.Application:Application started
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-8' coro=<watch_transactions() done, defined at /home/anointedbenson/zen_bot/bot.py:248> exception=ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\'zenchain-testnet.api.onfinality.io\', port=443): Max retries exceeded with url: /public (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f2ab5df55d0>: Failed to resolve \'zenchain-testnet.api.onfinality.io\' ([Errno -3] Temporary failure in name resolution)"))'))>
+Traceback (most recent call last):
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/socket.py", line 962, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/urllib3/connection.py", line 753, in connect
+    self.sock = sock = self._new_conn()
+                       ^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/urllib3/connection.py", line 205, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x7f2ab5df55d0>: Failed to resolve 'zenchain-testnet.api.onfinality.io' ([Errno -3] Temporary failure in name resolution)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/urllib3/util/retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='zenchain-testnet.api.onfinality.io', port=443): Max retries exceeded with url: /public (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f2ab5df55d0>: Failed to resolve 'zenchain-testnet.api.onfinality.io' ([Errno -3] Temporary failure in name resolution)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 267, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/bot.py", line 251, in watch_transactions
+    latest = w3.eth.block_number
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/web3/eth/eth.py", line 145, in block_number
+    return self.get_block_number()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/web3/module.py", line 112, in caller
+    result = w3.manager.request_blocking(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/web3/manager.py", line 231, in request_blocking
+    response = self._make_request(method, params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/web3/manager.py", line 163, in _make_request
+    return request_func(method, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/web3/middleware/base.py", line 56, in middleware
+    return self.response_processor(method, make_request(method, params))
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/web3/middleware/base.py", line 56, in middleware
+    return self.response_processor(method, make_request(method, params))
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/web3/middleware/base.py", line 56, in middleware
+    return self.response_processor(method, make_request(method, params))
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  [Previous line repeated 2 more times]
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/web3/_utils/caching/caching_utils.py", line 261, in wrapper
+    return func(provider, method, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/web3/providers/rpc/rpc.py", line 169, in make_request
+    raw_response = self._make_request(method, request_data)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/web3/providers/rpc/rpc.py", line 146, in _make_request
+    return self._request_session_manager.make_post_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/web3/_utils/http_session_manager.py", line 145, in make_post_request
+    with self.get_response_from_post_request(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/web3/_utils/http_session_manager.py", line 127, in get_response_from_post_request
+    return session.post(endpoint_uri, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/requests/sessions.py", line 637, in post
+    return self.request("POST", url, data=data, json=json, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/requests/adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='zenchain-testnet.api.onfinality.io', port=443): Max retries exceeded with url: /public (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f2ab5df55d0>: Failed to resolve 'zenchain-testnet.api.onfinality.io' ([Errno -3] Temporary failure in name resolution)"))
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 409 Conflict"
+ERROR:telegram.ext.Application:No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 267, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 4610, in get_updates
+    await self._post(
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 374, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 409 Conflict"
+ERROR:telegram.ext.Application:No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 267, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 4610, in get_updates
+    await self._post(
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 374, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 409 Conflict"
+ERROR:telegram.ext.Application:No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 267, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 4610, in get_updates
+    await self._post(
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 374, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 409 Conflict"
+ERROR:telegram.ext.Application:No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 267, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 4610, in get_updates
+    await self._post(
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 374, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 409 Conflict"
+ERROR:telegram.ext.Application:No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 267, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 4610, in get_updates
+    await self._post(
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 374, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 409 Conflict"
+ERROR:telegram.ext.Application:No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 267, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 4610, in get_updates
+    await self._post(
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 374, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 409 Conflict"
+ERROR:telegram.ext.Application:No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 267, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 4610, in get_updates
+    await self._post(
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 374, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 409 Conflict"
+ERROR:telegram.ext.Application:No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 267, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 4610, in get_updates
+    await self._post(
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 374, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 409 Conflict"
+ERROR:telegram.ext.Application:No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 267, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 4610, in get_updates
+    await self._post(
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 374, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 409 Conflict"
+ERROR:telegram.ext.Application:No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 267, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 4610, in get_updates
+    await self._post(
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 374, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 409 Conflict"
+ERROR:telegram.ext.Application:No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 267, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 4610, in get_updates
+    await self._post(
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 374, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 409 Conflict"
+ERROR:telegram.ext.Application:No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 267, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 4610, in get_updates
+    await self._post(
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 374, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 409 Conflict"
+ERROR:telegram.ext.Application:No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 267, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 4610, in get_updates
+    await self._post(
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 374, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 409 Conflict"
+ERROR:telegram.ext.Application:No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 267, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 4610, in get_updates
+    await self._post(
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 374, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 409 Conflict"
+ERROR:telegram.ext.Application:No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_utils/networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 267, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 4610, in get_updates
+    await self._post(
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/ext/_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/anointedbenson/zen_bot/venv/lib/python3.11/site-packages/telegram/request/_baserequest.py", line 374, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.telegram.org/bot7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI/getUpdates "HTTP/1.1 200 OK"
