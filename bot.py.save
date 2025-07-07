@@ -1,0 +1,293 @@
+import json
+import asyncio
+import logging
+import nest_asyncio
+nest_asyncio.apply()
+from time import time
+from datetime import datetime
+from web3 import Web3
+from telegram import Update
+from telegram.ext import (
+    ApplicationBuilder, CommandHandler, MessageHandler,
+    ContextTypes, filters
+)
+
+# ----------------- CONFIG -----------------
+TOKEN = "7242771948:AAHLKPZpZksVbNssGOmRZoLq_hUsRV_MMdI"
+RPC_URL = 'https://zenchain-testnet.api.onfinality.io/public'
+EXPLORER_URL = 'https://explorer.zenchain-testnet.network/tx/'
+
+PRIVATE_KEY = "0865833388dd07bd134a64b21497b9c2bf134ec05ac1491206e8bda386bbf07c"
+FAUCET_AMOUNT = Web3.to_wei(10, 'ether')  # 10 ZTC
+FAUCET_ADDRESS = Web3(Web3.HTTPProvider(RPC_URL)).eth.account.from_key(PRIVATE_KEY).address
+
+logging.basicConfig(level=logging.INFO)
+w3 = Web3(Web3.HTTPProvider(RPC_URL))
+
+# ----------------- DATA STORE -----------------
+try:
+    with open("data.json", "r") as f:
+        data = json.load(f)
+except FileNotFoundError:
+    data = {}
+
+async def save_data():
+    with open("data.json", "w") as f:
+        json.dump(data, f)
+
+# ----------------- COMMANDS -----------------
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(
+        "👋 *Welcome to ZenBot!*\n\n"
+        "I help you track ZenChain transactions.\n\n"
+        "*Commands:*\n"
+        "/watch <address> - Watch address\n"
+        "/list - Show your watched\n"
+        "/remove <address> - Stop watching\n"
+        "/clear - Remove all\n"
+        "/balance <address> - Check balance\n"
+        "/stats - Bot stats\n"
+        "/faucet <address> - Get 10 ZTC every 24h\n"
+        "/help - Help\n\n"
+        "Or just send an address directly.",
+        parse_mode="Markdown"
+    )
+
+async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(
+        "📚 *Command List:*\n"
+        "/watch <address> - Watch an address\n"
+        "/list - Your watched addresses\n"
+        "/remove <address> - Stop watching\n"
+        "/clear - Clear all\n"
+        "/balance <address> - Show balance\n"
+        "/stats - Show stats\n"
+        "/faucet <address> - Get 10 ZTC every 24h\n"
+        "/start - Welcome\n"
+        "/help - This help message",
+        parse_mode="Markdown"
+    )
+
+# ----------------- WATCH COMMANDS -----------------
+async def watch_address(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not context.args:
+        await update.message.reply_text("Usage: /watch <address>")
+        return
+    address = context.args[0].strip()
+    if not w3.is_address(address):
+        await update.message.reply_text("❌ Invalid address.")
+        return
+    user_id = str(update.message.chat_id)
+    upgrade_user(user_id)
+    if address not in data[user_id]["addresses"]:
+        data[user_id]["addresses"].append(address)
+        await save_data()
+        await update.message.reply_text(f"✅ Now watching {address}.")
+    else:
+        await update.message.reply_text(f"👀 Already watching {address}.")
+
+async def list_addresses(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_id = str(update.message.chat_id)
+    upgrade_user(user_id)
+    watched = data[user_id]["addresses"]
+    if watched:
+        await update.message.reply_text("📜 Your watched addresses:\n" + "\n".join(watched))
+    else:
+        await update.message.reply_text("❌ You're not watching any addresses yet.")
+
+async def remove_address(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not context.args:
+        await update.message.reply_text("Usage: /remove <address>")
+        return
+    address = context.args[0].strip()
+    user_id = str(update.message.chat_id)
+    upgrade_user(user_id)
+    if address in data[user_id]["addresses"]:
+        data[user_id]["addresses"].remove(address)
+        await save_data()
+        await update.message.reply_text(f"🚫 Stopped watching {address}.")
+    else:
+        await update.message.reply_text(f"❌ You're not watching {address}.")
+
+async def clear_addresses(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_id = str(update.message.chat_id)
+    upgrade_user(user_id)
+    data[user_id]["addresses"] = []
+    await save_data()
+    await update.message.reply_text("🧹 Cleared all your watched addresses.")
+
+# ----------------- BALANCE & STATS -----------------
+async def balance_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not context.args:
+        await update.message.reply_text("Usage: /balance <address>")
+        return
+    address = context.args[0].strip()
+    if not w3.is_address(address):
+        await update.message.reply_text("❌ Invalid address.")
+        return
+    balance = w3.eth.get_balance(address)
+    eth_balance = w3.from_wei(balance, 'ether')
+    await update.message.reply_text(f"💰 Balance of {address}: {eth_balance} ZTC")
+
+async def stats_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    total_users = len(data)
+    total_addresses = sum(len(d.get("addresses", [])) for d in data.values())
+    await update.message.reply_text(
+        f"📊 *Bot Stats:*\nUsers: {total_users}\nWatched addresses: {total_addresses}",
+        parse_mode="Markdown"
+    )
+
+# ----------------- FAUCET -----------------
+async def faucet(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_id = str(update.message.chat_id)
+    upgrade_user(user_id)
+    now = int(time())
+
+    last_time = data[user_id].get("last_faucet_time", 0)
+    if now - last_time < 24*60*60:
+        hours_left = int((24*60*60 - (now - last_time)) / 3600)
+        await update.message.reply_text(
+            f"🕒 Please wait {hours_left} hours before claiming again."
+        )
+        return
+
+    if not context.args:
+        await update.message.reply_text("Usage: /faucet <address>")
+        return
+
+    recipient = context.args[0].strip()
+    if not w3.is_address(recipient):
+        await update.message.reply_text("❌ Invalid address.")
+        return
+
+    try:
+        nonce = w3.eth.get_transaction_count(FAUCET_ADDRESS)
+        tx = {
+            'to': recipient,
+            'value': FAUCET_AMOUNT,
+            'gas': 21000,
+            'gasPrice': w3.to_wei('2', 'gwei'),
+            'nonce': nonce,
+            'chainId': w3.eth.chain_id
+        }
+        signed_tx = w3.eth.account.sign_transaction(tx, PRIVATE_KEY)
+
+        # ✅ FIXED LINE
+        tx_hash = w3.eth.send_raw_transaction(signed_tx.raw_transaction)
+
+        data[user_id]["last_faucet_time"] = now
+        await save_data()
+
+        await update.message.reply_text(
+            f"✅ Sent 10 ZTC to {recipient}.\n"
+            f"Tx hash: [{tx_hash.hex()}]({EXPLORER_URL}{tx_hash.hex()})",
+            parse_mode="Markdown"
+        )
+
+        logging.info(f"Faucet sent to {recipient} by {user_id}, tx: {tx_hash.hex()}")
+
+    except Exception as e:
+        logging.error(f"Faucet error for {user_id} -> {recipient}: {e}")
+        await update.message.reply_text(f"⚠️ Faucet failed: {e}")
+
+# ----------------- ADDRESS TEXT HANDLER -----------------
+async def add_address(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    address = update.message.text.strip()
+    if not w3.is_address(address):
+        await update.message.reply_text("❌ Invalid address.")
+        return
+    user_id = str(update.message.chat_id)
+    upgrade_user(user_id)
+    if address not in data[user_id]["addresses"]:
+        data[user_id]["addresses"].append(address)
+        await save_data()
+        await update.message.reply_text(f"✅ Now watching {address}.")
+    else:
+        await update.message.reply_text(f"👀 Already watching {address}.")
+
+# ----------------- WATCH TRANSACTIONS -----------------
+async def watch_transactions(app):
+    last_block = w3.eth.block_number
+    while True:
+        latest = w3.eth.block_number
+        if latest > last_block:
+            for block_num in range(last_block + 1, latest + 1):
+                block = w3.eth.get_block(block_num, full_transactions=True)
+                for tx in block.transactions:
+                    await handle_tx(tx, app)
+            last_block = latest
+        await asyncio.sleep(5)
+
+async def handle_tx(tx, app):
+    to_addr = tx.to
+    from_addr = tx['from']
+    value_zen = w3.from_wei(tx.value, 'ether')
+    gas_price = w3.from_wei(tx.gasPrice, 'gwei')
+    tx_hash = tx.hash.hex()
+    time_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    for user_id, user_data in data.items():
+        addresses = user_data.get("addresses", [])
+        if to_addr in addresses or from_addr in addresses:
+            try:
+                await app.bot.send_message(
+                    chat_id=int(user_id),
+                    text=(
+                        f"🚀 *New transaction!*\n"
+                        f"*Hash:* [{tx_hash}]({EXPLORER_URL}{tx_hash})\n"
+                        f"*From:* {from_addr}\n*To:* {to_addr}\n"
+                        f"*Amount:* {value_zen} ZTC\n*Gas:* {gas_price} Gwei\n*Time:* {time_str}"
+                    ),
+                    parse_mode="Markdown"
+                )
+            except Exception as e:
+                logging.error(f"Failed to notify {user_id}: {e}")
+
+# ----------------- UTIL -----------------
+def upgrade_user(user_id):
+    if user_id not in data:
+        # New user, fully initialize
+        data[user_id] = {"addresses": [], "last_faucet_time": 0}
+    elif isinstance(data[user_id], list):
+        # Old format, upgrade list -> dict
+        data[user_id] = {"addresses": data[user_id], "last_faucet_time": 0}
+    elif isinstance(data[user_id], dict):
+        # Already a dict, but ensure keys exist
+        data[user_id].setdefault("addresses", [])
+        data[user_id].setdefault("last_faucet_time", 0)
+
+# ----------------- MAIN -----------------
+import nest_asyncio
+nest_asyncio.apply()
+
+import asyncio
+
+# Normalize existing data after load
+or user_id in list(data.keys()):
+    upgrade_user(user_id)
+
+async def after_start(app):
+    asyncio.create_task(watch_transactions(app))
+
+async def main():
+    app = ApplicationBuilder().token(TOKEN).build()
+
+    # Register handlers
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("help", help_command))
+    app.add_handler(CommandHandler("list", list_addresses))
+    app.add_handler(CommandHandler("watch", watch_address))
+    app.add_handler(CommandHandler("remove", remove_address))
+    app.add_handler(CommandHandler("clear", clear_addresses))
+    app.add_handler(CommandHandler("balance", balance_command))
+    app.add_handler(CommandHandler("stats", stats_command))
+    app.add_handler(CommandHandler("faucet", faucet))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, add_address))
+
+    # ✅ NEW: manually call startup callback
+    app.post_init = after_start
+
+    # Start polling
+    await app.run_polling()
+
+if __name__ == "__main__":
+    asyncio.run(main())
